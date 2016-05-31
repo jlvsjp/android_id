@@ -1,0 +1,124 @@
+//apply plugin: 'com.android.application'
+apply plugin: 'com.android.model.application'
+model {
+    android {
+        /*
+        compileSdkVersion 19
+        buildToolsVersion "23.0.3"
+
+        defaultConfig {
+            applicationId "com.lz.nfc"
+            minSdkVersion 19
+            targetSdkVersion 19
+        */
+        /*
+            ndk {
+                moduleName "SelfCallbackNfc"
+            }
+            */
+        /*
+        sourceSets.main {
+            jniLibs.srcDir 'src/main/libs'
+            jni.srcDirs = [] //disable automatic ndk-build call
+        }
+        // call regular ndk-build(.cmd) script from app directory
+        task ndkBuild(type:Exec) {
+            commandLine 'ndk-build', '-C', file('src/main/jni').absolutePath
+        }
+        */
+        //}
+        compileSdkVersion = 23
+        buildToolsVersion = "23.0.2"
+
+        defaultConfig {
+            applicationId = "com.ltj.nfc"
+            minSdkVersion.apiLevel = 15
+            targetSdkVersion.apiLevel = 19
+            versionCode = 1
+            versionName = '1.0'
+
+            /*
+            ndk {
+                moduleName "SelfCallbackNfc"
+            }
+            */
+            /*
+            sourceSets.main {
+                jniLibs.srcDir 'src/main/libs'
+                jni.srcDirs = [] //disable automatic ndk-build call
+            }
+            task ndkBuild(type:Exec) {
+                commandLine 'ndk-build', '-C', file('src/main/jni').absolutePath
+            }
+            */
+        }
+
+        /*
+        ndk {
+            moduleName "SelfCallbackNfc"
+        }
+        */
+
+        buildTypes {
+            release {
+                minifyEnabled false
+                //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+                proguardFiles.add(file('proguard-android.txt'))
+            }
+            /*
+        debug {
+            debuggable = true
+            jniDebuggable = true
+        }
+        */
+        }
+
+    }
+
+    android.ndk {
+        moduleName "SelfCallbackNfc"
+    }
+
+
+    android.sources {
+        main {
+            jniLibs {
+                source {
+                    srcDir 'src/main/libs'
+                }
+            }
+        }
+    }
+
+
+
+
+}
+
+task ndkBuild(type: Exec) {
+        commandLine 'ndk-build.cmd', '-C', file('src/main').absolutePath
+}
+
+tasks.all {
+    task ->
+        if (task.name.startsWith('compile') && task.name.contains('MainC')) {
+            task.enabled = false
+        }
+        if (task.name.startsWith('link')) {
+            task.enabled = false
+        }
+
+
+        if (task.name.endsWith('SharedLibrary') ) {
+            task.dependsOn ndkBuild
+            task.enabled = false
+        }
+
+}
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:23.3.0'
+}
+

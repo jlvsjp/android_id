@@ -1,0 +1,105 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Risky Project Location:
+-----------------------
+The tools *should* handle project locations in any directory. However,
+due to bugs, placing projects in directories containing spaces in the
+path, or characters like ", ' and &, have had issues. We're working to
+eliminate these bugs, but to save yourself headaches you may want to
+move your project to a location where this is not a problem.
+C:\Documents and Settings\Administrator\StudioProjects\nfc
+            -   -                                         
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .gitignore
+* META-INF\
+* META-INF\MANIFEST.MF
+* README.md
+* nfc.iml
+* nfc.ipr
+* nfc.iws
+* out\
+* out\artifacts\
+* out\artifacts\nfc_jar\
+* out\artifacts\nfc_jar\nfc.jar
+* out\production\
+* out\production\nfc\
+* out\production\nfc\com\
+* out\production\nfc\com\ivsign\
+* out\production\nfc\com\ivsign\android\
+* out\production\nfc\com\ivsign\android\IDCReader\
+* out\production\nfc\com\ivsign\android\IDCReader\IDCReaderSDK.class
+* out\production\nfc\com\lz\
+* out\production\nfc\com\lz\domain\
+* out\production\nfc\com\lz\domain\IdentityCard.class
+* out\production\nfc\com\lz\nfc\
+* out\production\nfc\com\lz\nfc\BuildConfig.class
+* out\production\nfc\com\lz\nfc\MainActivity$1.class
+* out\production\nfc\com\lz\nfc\MainActivity.class
+* out\production\nfc\com\lz\nfc\R$attr.class
+* out\production\nfc\com\lz\nfc\R$drawable.class
+* out\production\nfc\com\lz\nfc\R$id.class
+* out\production\nfc\com\lz\nfc\R$layout.class
+* out\production\nfc\com\lz\nfc\R$menu.class
+* out\production\nfc\com\lz\nfc\R$string.class
+* out\production\nfc\com\lz\nfc\R$xml.class
+* out\production\nfc\com\lz\nfc\R.class
+* out\production\nfc\com\lz\nfc\TestActivity$1.class
+* out\production\nfc\com\lz\nfc\TestActivity.class
+* out\production\nfc\com\lz\nfc\jni\
+* out\production\nfc\com\lz\nfc\jni\NfcDecode.class
+* out\production\nfc\com\lz\nfc\jni\SelfCallbackNfc.class
+* out\production\nfc\com\lz\nfc\jni\SelfCallbackNfcOOOO.class
+* out\production\nfc\com\lz\nfc\utils\
+* out\production\nfc\com\lz\nfc\utils\ByteHex.class
+* out\production\nfc\com\lz\nfc\utils\CodingUtils.class
+* out\production\nfc\com\lz\nfc\utils\CommandUtils.class
+* out\production\nfc\com\lz\nfc\utils\DataTypeChangeHelper.class
+* out\production\nfc\com\lz\nfc\utils\MessageUtils.class
+* out\production\nfc\com\lz\nfc\utils\ReadIDCardHandler$1.class
+* out\production\nfc\com\lz\nfc\utils\ReadIDCardHandler.class
+* out\production\nfc\com\lz\nfc\utils\SSvrCMD.class
+* out\production\nfc\com\lz\nfc\utils\StreamUtils.class
+* out\production\nfc\com\lz\nfc\utils\TcpDataService.class
+* out\production\nfc\com\lz\nfc\utils\UncodeUtils.class
+* out\production\nfc\nfc.apk
+* out\production\nfc\nfc.unaligned.apk
+* out\production\nfc\res\
+* out\production\nfc\res\raw\
+* out\production\nfc\res\raw\base.dat
+* out\production\nfc\res\raw\license.lic
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app\src\main\AndroidManifest.xml
+* assets\ => app\src\main\assets
+* jni\ => app\src\main\jni\
+* libs\armeabi\libSelfCallbackNfc.so => app\src\main\jniLibs\armeabi\libSelfCallbackNfc.so
+* res\ => app\src\main\res\
+* src\ => app\src\main\java\
+* src\res\raw\base.dat => app\src\main\resources\res\raw\base.dat
+* src\res\raw\license.lic => app\src\main\resources\res\raw\license.lic
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

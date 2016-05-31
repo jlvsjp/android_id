@@ -1,0 +1,14 @@
+; \libnfc.def : Declares the module parameters for the DLL.
+
+LIBRARY      "libnfc"
+DESCRIPTION  'libnfc Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+	CheckNFC
+	OpenNFC
+	CloseNFC
+	ReadNFCData
+	WriteNFCData
+			
+	

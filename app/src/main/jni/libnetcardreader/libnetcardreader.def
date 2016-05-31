@@ -1,0 +1,14 @@
+; \libnetcardreader.def : Declares the module parameters for the DLL.
+
+LIBRARY      "libnetcardreader"
+DESCRIPTION  'libnetcardreader Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+	NFC_NET_SetNFCLocal
+	NFC_NET_SetNFCServer
+	NFC_NET_NFCCardReader
+	NFC_NET_GetDevSerialNo
+	NFC_NET_GetSDKInfo
+	NFC_NET_GetLastError
+	NFC_NET_SetSDKConfig

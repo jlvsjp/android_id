@@ -1,0 +1,37 @@
+LOCAL_PATH := $(call my-dir)
+
+#####################################################
+# build  NfcDecode.so for self nfc
+#####################################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE    := SelfCallbackNfc
+LOCAL_SRC_FILES := com_lz_nfc_jni_SelfCallbackNfc.cpp CallBackHandler.cpp
+LOCAL_CFLAGS += -fpermissive
+
+
+LOCAL_LDLIBS	:= -llog
+
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/
+
+include $(BUILD_SHARED_LIBRARY)
+
+#####################################################
+# build  NfcDecode.so for self nfc
+#####################################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE    := NfcDecode
+LOCAL_SRC_FILES := netcodec.c
+
+
+LOCAL_LDLIBS	:= -llog
+
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/
+
+include $(BUILD_SHARED_LIBRARY)
+
+
+
+
+
