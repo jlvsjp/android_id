@@ -1,3 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="/home/andy/GitHub/WORK/android_id/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/home/andy/GitHub/WORK/android_id/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.3.0_3a3f6f5d4bf6922e7d41f0315ec73caac2f02952.jar" />
+    </item>
+    <item
+        jar="/home/andy/GitHub/WORK/android_id/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/home/andy/GitHub/WORK/android_id/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.3.0_dab02ed6d423c6ca62675909257c6a102a1a1f27.jar" />
+    </item>
+    <item
+        jar="/home/andy/ProgramFile/AndroidStudio/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/home/andy/GitHub/WORK/android_id/app/build/intermediates/pre-dexed/debug/support-annotations-23.3.0_13f74d7845be2c20d298fdd6da3a3c093516fde0.jar" />
+    </item>
+    <item
+        jar="/home/andy/GitHub/WORK/android_id/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/home/andy/GitHub/WORK/android_id/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.3.0_6d82b390ed5496710dd75865eea0170fac1ca5a2.jar" />
+    </item>
+    <item
+        jar="/home/andy/GitHub/WORK/android_id/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/home/andy/GitHub/WORK/android_id/app/build/intermediates/pre-dexed/debug/internal_impl-23.3.0_c88e3e16bc67dcbb6e1dbf5e494fc1fcae1d7549.jar" />
+    </item>
+    <item
+        jar="/home/andy/GitHub/WORK/android_id/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/home/andy/GitHub/WORK/android_id/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.3.0_7a75d6ac67e370526458ad55bb853d0c8ee00873.jar" />
+    </item>
+
+</items>

@@ -33,7 +33,7 @@ model {
         defaultConfig {
             applicationId = "com.ltj.nfc"
             minSdkVersion.apiLevel = 15
-            targetSdkVersion.apiLevel = 19
+            targetSdkVersion.apiLevel = 23
             versionCode = 1
             versionName = '1.0'
 
@@ -76,15 +76,33 @@ model {
     }
 
     android.ndk {
+        platformVersion = 23
         moduleName "SelfCallbackNfc"
+        ldLibs.addAll(['log','android'])
+        cppFlags.add('-I' + file("src/main/jni/libnetcardreader"))
+        cppFlags.add('-I' + file("src/main/jni"))
+        //CFlags.add('-I' + file("src/main/jni/libnfc"))
+        CFlags.add('-I' + file("src/main/jni/include"))
+        cppFlags.add('-fpermissive')
+        debuggable = true
+
     }
 
 
     android.sources {
         main {
+            /*
             jniLibs {
                 source {
                     srcDir 'src/main/libs'
+                }
+            }
+            */
+            jni {
+                source {
+                    srcDirs 'src/main/jni'
+                    //srcDirs 'src/main/jni/libnfc'
+                    srcDirs 'src/main/jni/libnetcardreader'
                 }
             }
         }
@@ -94,9 +112,10 @@ model {
 
 
 }
-
+/*
 task ndkBuild(type: Exec) {
-        commandLine 'ndk-build.cmd', '-C', file('src/main').absolutePath
+        //commandLine 'ndk-build.cmd', '-C', file('src/main').absolutePath
+        commandLine 'ndk-build', '-C', file('src/main').absolutePath,'all','NDK_DEBUG=1'
 }
 
 tasks.all {
@@ -115,7 +134,7 @@ tasks.all {
         }
 
 }
-
+*/
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
