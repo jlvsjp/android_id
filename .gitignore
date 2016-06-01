@@ -34,3 +34,7 @@ captures/
 
 # add by andy
 .idea/
+
+app/src/main/obj/
+app/src/main/libs/
+app/build/

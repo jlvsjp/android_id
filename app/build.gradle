@@ -75,15 +75,30 @@ model {
 
     }
 
+    repositories {
+        libs(PrebuiltLibraries) {
+            // Configure one pre-built lib: shared
+            wltdecode {
+                binaries.withType(SharedLibraryBinary) {
+                    sharedLibraryFile = file("src/main/jni/perbuild/libwltdecode.so")
+                }
+            }
+        }
+    }
+
+
     android.ndk {
-        platformVersion = 23
+        //platformVersion = 21
+        platformVersion = 19
         moduleName "SelfCallbackNfc"
         ldLibs.addAll(['log','android'])
         cppFlags.add('-I' + file("src/main/jni/libnetcardreader"))
         cppFlags.add('-I' + file("src/main/jni"))
+        //cppFlags.add('-I' + file("src/main/jni/bionic"))
         //CFlags.add('-I' + file("src/main/jni/libnfc"))
         CFlags.add('-I' + file("src/main/jni/include"))
         cppFlags.add('-fpermissive')
+        stl    'gnustl_shared'
         debuggable = true
 
     }
@@ -91,20 +106,27 @@ model {
 
     android.sources {
         main {
-            /*
+
             jniLibs {
                 source {
-                    srcDir 'src/main/libs'
+                    srcDir 'src/main/jniLibs'
                 }
             }
-            */
+
             jni {
+                /*
+                dependencies {
+                    library 'wltdecode' linkage 'shared'
+                }
+                */
                 source {
                     srcDirs 'src/main/jni'
                     //srcDirs 'src/main/jni/libnfc'
-                    srcDirs 'src/main/jni/libnetcardreader'
+                    //srcDirs 'src/main/jni/libnetcardreader'
                 }
             }
+
+
         }
     }
 

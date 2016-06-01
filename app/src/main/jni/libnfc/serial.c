@@ -5,6 +5,8 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+//#include <termios.h>
+
 
 #ifdef WIN32
 #include "pcomm.h"
@@ -77,7 +79,7 @@ int ClosePort(int devfd)
 	return ret;
 }
 
-//ÉèÖÃ´®¿ÚÊôÐÔ
+//ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 int SettingPort(int devfd, int speed, int databits, int stopbits, int parity, int flowcontrol)
 {
 #ifdef WIN32
@@ -319,9 +321,9 @@ int SettingPort(int devfd, int speed, int databits, int stopbits, int parity, in
 	options.c_lflag &= ~(ICANON | ECHO |ECHOE| ISIG);
 	options.c_oflag &= ~OPOST; 
 	options.c_iflag = 0;	
-	options.c_cc[VINTR] = 0; //·ÇÖÐ¶ÏÄ£Ê½
+	options.c_cc[VINTR] = 0; //ï¿½ï¿½ï¿½Ð¶ï¿½Ä£Ê½
 
-	options.c_cc[VMIN] = 0;  //·Ç×èÈûÄ£Ê½
+	options.c_cc[VMIN] = 0;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½
 
 	if(tcsetattr(devfd, TCSANOW, &options) != 0)
 	{        

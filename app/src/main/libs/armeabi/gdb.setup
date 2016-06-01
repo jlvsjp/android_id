@@ -1,2 +1,0 @@
-set solib-search-path ./obj/local/armeabi
-directory /home/andy/ProgramFile/AndroidStudio/android-sdk-linux/ndk-bundle/platforms/android-19/arch-arm/usr/include jni/ jni/libnetcardreader /home/andy/ProgramFile/AndroidStudio/android-sdk-linux/ndk-bundle/sources/cxx-stl/system/include jni/bionic/libc/kernel/common jni/include jni/perbuild

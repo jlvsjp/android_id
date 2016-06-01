@@ -13,7 +13,8 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <usbhost/usbhost.h>
-#include <linux/usb/f_accessory.h>
+//#include <linux/usb/f_accessory.h>
+#include "./include/linux/usb/f_accessory.h"
 #endif
 
 #include "otg.h"
