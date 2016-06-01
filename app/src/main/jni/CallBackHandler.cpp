@@ -100,7 +100,8 @@ int JavaSendCmd(unsigned char *buff,int len,unsigned char *recvbuff)
 
     //print_hex((char *)"CMD Recv",recvbuff,ret);
 	//	free bytes ?
-    g_env->ReleaseByteArrayElements(recvArray,(jbyte *)buff,0);
+    //g_env->ReleaseByteArrayElements(recvArray,(jbyte *)buff,0);
+    //g_env->ReleaseByteArrayElements(data,(jbyte *)buff,0);
 	return ret;
 }
 

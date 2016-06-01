@@ -94,9 +94,10 @@ JNIEXPORT jint JNICALL Java_com_lz_nfc_jni_SelfCallbackNfc_read
 
     	iRet  = g_reader.NFCCardReader(&cardMsg);
 
-    	memcpy(data,&cardMsg,sizeof(cardMsg));
+
     	if( iRet == NFC_NET_NFCREADCARD_SUCCESS)
       	{
+            memcpy(data,&cardMsg,sizeof(cardMsg));
       		LOGE("read card success\n");
       		env->SetByteArrayRegion(jArrayData,0,(int)sizeof(cardMsg),(jbyte *)data);
 
