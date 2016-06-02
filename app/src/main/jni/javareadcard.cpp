@@ -315,7 +315,7 @@ int  JavaReadCard::NFCCardReader(struct SCardMsg * pCardMsg)
         LOGE("7 --> 发送启动读卡命令[%d] ret=%d \n",len,iRet);
         //LOGBUFF((char *)"SendCmd--"，netbuff,len);
         //LOGE("%02x,%02x,%02x  -- %02x %02x %02x",netbuff[0],netbuff[1],netbuff[2],netbuff[len-1],netbuff[len-2],netbuff[len-3]);
-        LOGBUFF((char *)"dd",netbuff,len);
+        //LOGBUFF((char *)"dd",netbuff,len);
 
         if(iRet < 0)
         {
@@ -336,7 +336,7 @@ int  JavaReadCard::NFCCardReader(struct SCardMsg * pCardMsg)
                     m_netProtocol.DisconnectServer();
                     return -1;
                 }
-
+                /*
                 char desc[128] = {0};
 
                 switch(svrCmd.cmd)
@@ -371,6 +371,7 @@ int  JavaReadCard::NFCCardReader(struct SCardMsg * pCardMsg)
                 }
                 LOGE("%s====【%d】【%02X】",desc,svrCmd.type,svrCmd.cmd);
                     LOGE("Request :%p",JavaCmdRequest);
+                    */
                 switch(svrCmd.type)
                 {
                 case SVR_CMDTYPE_SENDCDM:
@@ -393,7 +394,7 @@ int  JavaReadCard::NFCCardReader(struct SCardMsg * pCardMsg)
                             return -1;
                         }
                         //内部认证
-                        LOGE("Request :%p",JavaCmdRequest);
+                        //LOGE("Request :%p",JavaCmdRequest);
                         len = JavaCmdRequest(NFC_CMD_INCERT,(int)(netbuff + 2), iRet - 2, buff, sizeof(buff));
                         if(len <= 0)
                         {
