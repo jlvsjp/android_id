@@ -3,8 +3,13 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context=".activites.MainActivity">
 
-    <item
+ <!--   <item
             android:id="@+id/action_settings"
             android:icon="@drawable/tab_settings_normal"
-            android:title="@string/action_settings"/>
+            android:title="@string/action_settings"/>-->
+
+    <item
+        android:id="@+id/server_settings"
+        android:icon="@drawable/tab_settings_normal"
+        android:title="@string/server_settings"/>
 </menu>

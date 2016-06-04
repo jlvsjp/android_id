@@ -326,7 +326,15 @@ public class SelfCallbackNfc {
         ret =  NFCCardReader(nfc_data);
         if(ret == 0 )
             callBackFinish(nfc_data);
-        ret = ret +1 -1;
+        else {
+            Message message = new Message();
+            message.what = SelfCallbackNfc.NFC_READCARD_FAIL;
+            message.obj = "读取错误返回" + ret;
+            mHandler.sendMessage(message);
+        }
+//        ret = ret +1 -1;
+
+
  /*
         try {
             byte[] bytes_8 = isodep.transceive(CommandUtils.c_8);

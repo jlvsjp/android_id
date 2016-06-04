@@ -20,6 +20,12 @@
                        android:resource="@xml/nfc_tech_filter"/>
         </activity>
 
+        <activity android:name=".SetOtgActivity"
+            android:label="OTG服务器设置"
+            android:theme="@android:style/Theme.Dialog"
+            android:configChanges="keyboardHidden|orientation"
+            />
+
     </application>
     <uses-permission android:name="android.permission.NFC"/>
     <uses-feature android:name="android.hardware.nfc" android:required="true"/>

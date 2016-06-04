@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">nfc</string>
     <string name="action_settings">设置</string>
+    <string name="server_settings">SETSERVER</string>
 </resources>

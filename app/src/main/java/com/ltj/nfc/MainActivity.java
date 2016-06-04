@@ -3,18 +3,26 @@ package com.ltj.nfc;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.lz.domain.IdentityCard;
 import com.lz.nfc.jni.SelfCallbackNfc;
+import com.lz.nfc.utils.Server;
+
+import java.lang.reflect.Method;
 
 public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
@@ -84,8 +92,81 @@ public class MainActivity extends Activity {
 
         this.context = this;
         selfCallbackNfc= new SelfCallbackNfc(mHandler,context);
-        selfCallbackNfc.setTheServer("222.46.20.174",9018);
+
+        //读取配置
+        SharedPreferences mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String remote_ip = mSharedPrefs.getString("remote_ip", Server.otg_server);
+        String remote_port = mSharedPrefs.getString("remote_port",Server.otg_port);
+
+
+        selfCallbackNfc.setTheServer(remote_ip, Integer.parseInt(remote_port));
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            /*case R.id.action_settings:
+                startActivity(new Intent(this, Otg.class));
+//				finish();
+                return true;*/
+            case R.id.server_settings:
+                startActivityForResult(new Intent(MainActivity.this, SetOtgActivity.class),1);
+//				finish();
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode==1){
+                //读取配置
+                SharedPreferences mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+                String remote_ip = mSharedPrefs.getString("remote_ip", Server.otg_server);
+                String remote_port = mSharedPrefs.getString("remote_port",Server.otg_port);
+                selfCallbackNfc.setTheServer(remote_ip, Integer.parseInt(remote_port));
+
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    /**
+     * 设置menu显示icon
+     */
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu)
+    {
+
+        if (featureId == Window.FEATURE_ACTION_BAR && menu != null)
+        {
+            if (menu.getClass().getSimpleName().equals("MenuBuilder"))
+            {
+                try
+                {
+                    Method m = menu.getClass().getDeclaredMethod(
+                            "setOptionalIconsVisible", Boolean.TYPE);
+                    m.setAccessible(true);
+                    m.invoke(menu, true);
+                } catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return super.onMenuOpened(featureId, menu);
+    }
+
+
 
     @Override
     public void onNewIntent(Intent intent) {
