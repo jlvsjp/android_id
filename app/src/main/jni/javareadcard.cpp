@@ -51,7 +51,7 @@ static unsigned char keys2[] = {0x75, 0x9A, 0x3D,0xB8,0x96,0xB8,0x6A,0xE7,0xB,0x
 static char LIMITED_IFNO[] = {0x58, 0x00, 0x58, 0x00, 0x58, 0x00, 0x58, 0x00, 0x58, 0x00, 0x58, 0x00, 0x58, 0x00, 0x58, 0x00,
                        0x58, 0x00, 0x58, 0x00, 0x58, 0x00, 0x58, 0x00, 0x58, 0x00, 0x58, 0x00, 0x58, 0x00, 0x58, 0x00};
 
-
+#define RETRY_TIME  3
 
 #define START_NETNFC_RDLEN (sizeof(START_NETNFC_RD) + 5)
 
@@ -197,6 +197,9 @@ int  JavaReadCard::NFCCardReader(struct SCardMsg * pCardMsg)
                 m_nfcProtocol.InitNFC();
     */
     //get applicationData
+    // add by andy retry when read error happend
+    int retry_times = RETRY_TIME;
+    _retry:
         if(m_iNFCType == NFC_LOCAL_ANDROID_DEV)
         {
             unsigned char appData[13] = {0x50,0x00,0x00,0x00,0x00,0xD1,0x03,0x86,0x0C,0x00,0x80,0x80,0x00};
@@ -220,8 +223,12 @@ int  JavaReadCard::NFCCardReader(struct SCardMsg * pCardMsg)
         iRet = m_netProtocol.ConnectServer(m_szServerIP, m_wServerPort);
         if(iRet < 0)
         {
-                m_dwLastErrorCode = NFC_NET_NETCONNECT_ERROR;
-                return -1;
+                if(retry_times == RETRY_TIME)
+                    iRet = m_netProtocol.ConnectServer(m_szServerIP, m_wServerPort);
+                if(iRet < 0) {
+                    m_dwLastErrorCode = NFC_NET_NETCONNECT_ERROR;
+                    return -1;
+                }
         }
 
         iRet = m_netProtocol.RecvData(netbuff, START_NETNFC_RDLEN);
@@ -487,8 +494,13 @@ int  JavaReadCard::NFCCardReader(struct SCardMsg * pCardMsg)
                         }
                         else
                         {
-                            m_dwLastErrorCode = NFC_NET_NFCREADCARD_ERROR;
+                            //在较差的网络环境下，容易出现外部认证失败，只在外部认证失败的时候发生重试，
                             m_netProtocol.DisconnectServer();
+                            retry_times--;
+                            if(retry_times > 0)
+                                goto _retry;
+                            m_dwLastErrorCode = NFC_NET_NFCREADCARD_ERROR;
+
                             return -1;
                         }
 
