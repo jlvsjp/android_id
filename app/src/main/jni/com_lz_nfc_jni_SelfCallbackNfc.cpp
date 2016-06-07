@@ -66,7 +66,8 @@ JNIEXPORT jint JNICALL Java_com_lz_nfc_jni_SelfCallbackNfc_read
 
                 LOGE("Call SetPhoneSerial.[%s]",(char *)Serial);
 
-                if(strstr((char *)Serial,(char *)"10086"))
+                //if(strstr((char *)Serial,(char *)"10086"))
+				if(0)
                 {
                     g_reader.SetNoSNVerify();
                 }
